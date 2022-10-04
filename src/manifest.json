@@ -1,0 +1,6 @@
+{
+  "name": "Stok Direct",
+  "short_name": "StokDirect",
+  "start_url": "/index.html",
+  "display": "standalone"
+}

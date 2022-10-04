@@ -19,13 +19,23 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/favicons/favicon.ico",
+              "src/favicons/android-chrome-192x192.png",
+              "src/favicons/android-chrome-512x512.png",
+              "src/favicons/apple-touch-icon.png",
+              "src/favicons/browserconfig.xml",
+              "src/favicons/favicon-16x16.png",
+              "src/favicons/favicon-32x32.png",
+              "src/favicons/mstile-150x150.png",
+              "src/favicons/safari-pinned-tab.svg",
+              "src/favicons/site.webmanifest",
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+            "styles": ["src/stokdirect-theme.scss", "src/styles.css"],
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -85,17 +95,15 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "cc08807c-095a-457a-bc63-6806de713c62"
   }
 }
