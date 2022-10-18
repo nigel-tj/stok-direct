@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
   }
 
   async login(submittedForm: FormGroup) {
+    console.log('HHHHHHHHHHHHHHHHHHHHHHHHHHHHH Here  at login')
     this.authService
       .login(submittedForm.value.email, submittedForm.value.password)
       .pipe(catchError((err: string) => (this.loginError = err)))
@@ -66,6 +67,7 @@ export class LoginComponent implements OnInit {
       .pipe(
         filter(([authStatus, user]) => authStatus.isAuthenticated && user?._id !== ''),
         tap(([authStatus, user]) => {
+          console.log('************** USER' + user)
           this.uiService.showToast(`Welcome ${user.fullName}! Role: ${user.role}`)
           this.router.navigate([
             this.redirectUrl || this.homeRoutePerRole(user.role as Role),

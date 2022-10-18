@@ -44,6 +44,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       map((authStatus) => {
         const roleMatch = this.checkRoleMatch(authStatus.userRole, route)
         const allowLogin = authStatus.isAuthenticated && roleMatch
+
         if (!allowLogin) {
           this.showAlert(authStatus.isAuthenticated, roleMatch)
           this.router.navigate(['login'], {
@@ -58,6 +59,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     )
   }
   private checkRoleMatch(role: Role, route?: ActivatedRouteSnapshot) {
+    console.log('HHHHHHHHHHHHHHHHHHHHHHHHHHHHH Here  at checkRoleMatch')
     if (!route?.data?.['expectedRole']) {
       return true
     }

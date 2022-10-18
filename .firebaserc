@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "stokdirect-8b06d"
+  },
+  "targets": {
+    "stokdirect-8b06d": {
+      "hosting": {
+        "stok-direct-app": [
+          "stokdirect-8b06d"
+        ]
+      }
+    }
   }
 }

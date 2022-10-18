@@ -8,3 +8,8 @@ export enum Role {
   Customer = 'customer',
   Administrator = 'administrator',
 }
+export enum AuthMode {
+  InMemory = 'In Memory',
+  CustomServer = 'Custom Server',
+  Firebase = 'Firebase',
+}

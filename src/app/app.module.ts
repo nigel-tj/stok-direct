@@ -1,24 +1,36 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
+import {} from 'firebase/auth'
+
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
+import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app'
+import { getAuth, provideAuth } from '@angular/fire/auth'
+import { AngularFireModule } from '@angular/fire/compat'
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ServiceWorkerModule } from '@angular/service-worker'
+import { IConfig, NgxMaskModule } from 'ngx-mask'
 
 import { environment } from '../environments/environment'
+import { AppMaterialModule } from './app-material.module'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor'
-import { InMemoryAuthService } from './auth/auth.inmemory.service'
+import { authFactory } from './auth/auth.factory'
 import { AuthService } from './auth/auth.service'
 import { SimpleDialogComponent } from './common/simple-dialog.component'
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component'
 import { ManagerModule } from './manager/manager.module'
-import { MaterialModule } from './material.module'
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { FieldErrorModule } from './user-controls/field-error/field-error/field-error.module'
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
+  showMaskTyped: true,
+}
 
 @NgModule({
   declarations: [
@@ -34,20 +46,27 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    AppMaterialModule,
     HttpClientModule,
     FlexLayoutModule,
+    FieldErrorModule,
     ManagerModule,
-
+    NgxMaskModule.forRoot(options),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    provideAuth(() => getAuth()),
   ],
   providers: [
-    { provide: AuthService, useClass: InMemoryAuthService },
+    {
+      provide: AuthService,
+      useFactory: authFactory,
+      deps: [AngularFireAuth, HttpClient],
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,

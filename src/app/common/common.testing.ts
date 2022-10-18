@@ -8,8 +8,8 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { autoSpyObj } from 'angular-unit-test-helper'
 import { Observable, Subscription, of } from 'rxjs'
 
+import { MaterialModule } from '../app-material.module.ts'
 import { AuthService } from '../auth/auth.service'
-import { MaterialModule } from '../material.module'
 import { UiService } from './ui.service'
 
 const FAKE_SVGS = {

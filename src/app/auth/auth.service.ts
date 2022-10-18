@@ -33,9 +33,6 @@ export interface IAuthStatus {
   userRole: Role
   userId: string
 }
-export interface IServerAuthResponse {
-  accessToken: string
-}
 
 export const defaultAuthResponse: IAuthStatus = {
   isAuthenticated: false,
@@ -110,12 +107,17 @@ export abstract class AuthService extends CacheService implements IAuthService {
     this.clearToken()
 
     const loginResponse$ = this.authProvider(email, password).pipe(
+      //tap((res) => console.log('****** Response: ', res)),
       map((value) => {
         this.setToken(value.accessToken)
         const token = jwt_decode(value.accessToken)
+
         return this.transformJwtToken(token)
       }),
-      tap((status) => this.authStatus$.next(status)),
+      tap((status) => {
+        this.authStatus$.next(status)
+        console.log('AUth service login tap ******: ', status)
+      }),
       this.getAndUpdateUserIfAuthenticated
     )
 
