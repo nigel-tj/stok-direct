@@ -5,6 +5,7 @@ import { AuthGuard } from './auth/auth-guard.service'
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { RegistrationComponent } from './registration/registration.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,9 +18,17 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    canLoad: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },
   { path: 'login/:redirectUrl', component: LoginComponent },
+  { path: 'signup', component: RegistrationComponent },
+  {
+    path: 'inventory',
+    loadChildren: () =>
+      import('./inventory/inventory.module').then((m) => m.InventoryModule),
+    canLoad: [AuthGuard],
+  },
   { path: '**', component: PageNotFoundComponent },
 ]
 

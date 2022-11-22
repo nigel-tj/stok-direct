@@ -1,16 +1,13 @@
-<div fxLayout="row" fxLayoutAlign="center">
-  <mat-card fxFlex="400px">
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center">
+  <mat-card class="box">
     <mat-card-header>
-      <mat-card-title>
-        <div class="mat-headline">Login</div>
-      </mat-card-title>
+      <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)" fxLayout="column">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-          <mat-icon>email</mat-icon>
           <mat-form-field fxFlex>
-            <input matInput placeholder="E-mail" aria-label="E- mail"
+            <input matInput placeholder="E-mail" aria-label="E-mail"
               formControlName="email">
             <mat-error *ngIf="loginForm.get('email')?.hasError('required')"> E-mail is
               required
@@ -21,7 +18,6 @@
           </mat-form-field>
         </div>
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-          <mat-icon matPrefix>vpn_key</mat-icon>
           <mat-form-field fxFlex>
             <input matInput placeholder="Password" aria- label="Password" type="password"
               formControlName="password">
@@ -40,12 +36,15 @@
         </div>
         <div fxLayout="row" class="margin-top">
           <div *ngIf="loginError" class="mat-caption error">{{ loginError }}</div>
-          <div class="flex-spacer"></div>
-          <button mat-raised-button type="submit" color="primary"
+          <button mat-raised-button type="submit" color="primary" class="btn-block"
             [disabled]="loginForm.invalid">
             Login
           </button>
         </div>
+        <p class="margin-top">
+          <mat-hint>Don't have an account? <a [routerLink]="['/signup']">Sign up</a>
+          </mat-hint>
+        </p>
       </form>
     </mat-card-content>
   </mat-card>

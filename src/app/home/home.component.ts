@@ -11,10 +11,17 @@ import { AuthService } from '../auth/auth.service'
       *ngIf="(authService.authStatus$ | async)?.isAuthenticated; else doLogin"
       fxLayout="column"
       fxLayoutAlign="center"
+      class="no-margin"
     >
-      <div class="mat-display-1">Providing more value for your stock</div>
-      <div class="mat-display-3">Welcome to StokDirect</div>
-      <div class="mat-display-2">Online Buying Group</div>
+      <picture class="landing-image">
+        <source
+          media="(min-width:0px)"
+          srcset="
+            https://res.cloudinary.com/dctvhclrx/image/upload/v1668769751/Stok_1_-2_p8t5gs.png
+          "
+        />
+        <img mat-card-image src="" alt="STOK DIRECT" />
+      </picture>
     </div>
     <ng-template #doLogin>
       <app-login></app-login>
@@ -22,8 +29,8 @@ import { AuthService } from '../auth/auth.service'
   `,
   styles: [
     `
-      div[fxLayout] {
-        margin-top: 32px;
+      .mat-card-image {
+        width: 100%;
       }
     `,
   ],

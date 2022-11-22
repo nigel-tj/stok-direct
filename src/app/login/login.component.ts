@@ -67,8 +67,8 @@ export class LoginComponent implements OnInit {
       .pipe(
         filter(([authStatus, user]) => authStatus.isAuthenticated && user?._id !== ''),
         tap(([authStatus, user]) => {
-          console.log('************** USER' + user)
           this.uiService.showToast(`Welcome ${user.fullName}! Role: ${user.role}`)
+          console.log('************** USER' + user + '  redirect URL ' + this.redirectUrl)
           this.router.navigate([
             this.redirectUrl || this.homeRoutePerRole(user.role as Role),
           ])

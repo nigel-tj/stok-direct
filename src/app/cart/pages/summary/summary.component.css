@@ -1,0 +1,133 @@
+.remove-button {
+    margin-left: 1em;
+}
+
+.costLabel {
+    font-weight: 500;
+    min-width: 12em;
+}
+
+#totalLabel {
+    min-width: 9em;
+}
+
+.costItem {
+    display: flex;
+    color: gray;
+}
+
+.costSummary {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0;
+    padding-left: 15px;
+}
+
+#subtotal,
+#total {
+    color: black;
+}
+
+.itemTotal {
+    margin-left: 1em;
+    min-width: 10em;
+    text-align: right;
+}
+
+#total {
+    font-weight: bold;
+}
+
+.costItem h2,
+.costItem h3,
+.costItem p {
+    margin-bottom: 0;
+}
+
+.image-xs {
+    height: 4em;
+    width: 4em;
+    margin-right: 1em;
+}
+
+.line-item {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    align-items: flex-start;
+}
+
+#line-details {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 9em;
+}
+
+#product-details,
+#product-config {
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+}
+
+#product-config {
+    margin-top: 1em;
+    align-items: center;
+}
+
+#checkout-button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 0 15px 15px;
+}
+
+button {
+    margin: 5px;
+}
+
+#order-id {
+    padding-left: 15px;
+    font-weight: 500;
+}
+
+.no-image {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+@media only screen and (min-width: 600px) {
+    .line-item {
+        flex-direction: row;
+    }
+    #product-details {
+        width: 300px;
+        padding-right: 30px;
+    }
+    .quantity {
+        margin-left: 3em;
+    }
+    .costSummary {
+        display: flex;
+        flex-direction: column;
+        padding: 0 6em;
+        margin: 1em 0;
+    }
+    .costLabel {
+        font-weight: 500;
+        min-width: 22em;
+    }
+    #totalLabel {
+        min-width: 17em;
+    }
+    .itemTotal {
+        margin-left: 1.5em;
+        min-width: 3em;
+    }
+    #checkout-button {
+        flex-direction: row;
+        justify-content: center;
+        padding: 0;
+    }
+}

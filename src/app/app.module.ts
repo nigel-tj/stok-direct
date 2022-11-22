@@ -1,8 +1,6 @@
-import {} from 'firebase/auth'
-
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app'
+//import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app'
 import { getAuth, provideAuth } from '@angular/fire/auth'
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth'
@@ -22,10 +20,12 @@ import { authFactory } from './auth/auth.factory'
 import { AuthService } from './auth/auth.service'
 import { SimpleDialogComponent } from './common/simple-dialog.component'
 import { HomeComponent } from './home/home.component'
+import { InventoryModule } from './inventory/inventory.module'
 import { LoginComponent } from './login/login.component'
 import { ManagerModule } from './manager/manager.module'
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { RegistrationComponent } from './registration/registration.component'
 import { FieldErrorModule } from './user-controls/field-error/field-error/field-error.module'
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
@@ -40,6 +40,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     PageNotFoundComponent,
     SimpleDialogComponent,
     NavigationMenuComponent,
+    RegistrationComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -60,6 +61,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
       registrationStrategy: 'registerWhenStable:30000',
     }),
     provideAuth(() => getAuth()),
+    InventoryModule,
   ],
   providers: [
     {

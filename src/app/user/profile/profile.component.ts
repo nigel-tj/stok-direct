@@ -91,7 +91,8 @@ export class ProfileComponent
 
   patchUser(user: IUser) {
     if (user) {
-      this.currentUserId = user._id
+      console.log('in patch user: ', this.authService.currentUser$.value._id)
+      this.currentUserId = this.authService.currentUser$.value._id
       this.patchUpdatedData(user)
       this.nameInitialData$.next(user.name)
     }
@@ -170,13 +171,16 @@ export class ProfileComponent
 
   async save(form: FormGroup) {
     this.subs.add(
-      this.userService.updateUser(this.currentUserId, form.value).subscribe(
-        (res: IUser) => {
-          this.patchUser(res)
-          this.uiService.showToast('Updated user')
-        },
-        (err: string) => (this.userError = err)
-      )
+      this.userService
+        .updateUser(this.authService.currentUser$.value._id, form.value)
+        .subscribe(
+          (res: IUser) => {
+            console.log('******* form save: ', res)
+            this.patchUser(res)
+            this.uiService.showToast('Updated user')
+          },
+          (err: string) => (this.userError = err)
+        )
     )
   }
 

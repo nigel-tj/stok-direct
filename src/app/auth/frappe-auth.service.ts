@@ -70,9 +70,11 @@ export class FrappeAuthService extends AuthService {
       .get<any>(`${environment.apiURL}/api/resource/User/${email}`, httpOptions)
       .pipe(
         map((data) => {
+          console.log('get user from frappe: ', data)
           let frappeUser = data.body.data
 
           return {
+            userId: frappeUser.name,
             first_name: frappeUser.first_name,
             last_name: frappeUser.last_name,
             email: frappeUser.email,

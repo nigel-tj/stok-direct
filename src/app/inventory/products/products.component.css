@@ -1,0 +1,7 @@
+#card-image {
+  object-fit: cover;
+  height: 250px;
+}
+.mat-card {
+  width: 100%;
+}

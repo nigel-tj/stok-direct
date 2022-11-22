@@ -1,0 +1,18 @@
+<mat-grid-list cols="{{cols}}" rowHeight="400px" gutterSize="20px" class="grid-layout">
+  <mat-grid-tile *ngFor="let category of categories;">
+    <mat-card>
+      <img id="card-image" mat-card-image src="{{category.imageUrl}}" alt="product photo">
+      <mat-card-content>
+        <mat-card-title matTooltip="{{category.name}}">{{category.name}}
+        </mat-card-title>
+        <mat-card-subtitle>{{category.description}}
+        </mat-card-subtitle>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" [routerLink]="['//', category.name]">
+          View
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

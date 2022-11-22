@@ -23,7 +23,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
 
     return next.handle(authRequest).pipe(
       catchError((err, caught) => {
-        if (err.status === 401) {
+        if (err.status === 401 || err.status === 403) {
           this.router.navigate(['/login'], {
             queryParams: {
               redirectUrl: this.router.routerState.snapshot.url,
